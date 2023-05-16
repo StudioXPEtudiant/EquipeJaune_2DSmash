@@ -13,7 +13,7 @@ public class CharacterMouvement : MonoBehaviour
 
     void FixeUpdate()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime
+        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
         if (Input.GetButtonDown("Jump"))
         {
