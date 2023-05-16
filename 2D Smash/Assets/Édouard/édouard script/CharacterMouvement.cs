@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class CharacterMouvement : MonoBehaviour
 {
-    public float speed = 5f; // la vitesse du personnage
+    public float moveSpeed;
 
-    // fonction appelée à chaque image
-    void Update()
+    public bool isJumping = false;
+
+    public Rigidbody2D rb;
+    private Vector3 velocity = new Vector3().zero;
+
+    void FixeUpdate()
     {
-        // récupère la valeur de l'axe horizontal (-1, 0 ou 1) et stocke le résultat dans une variable
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime
 
-        // crée un vecteur de mouvement en utilisant la valeur d'entrée de l'axe horizontal et 0 pour l'axe y
-        Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
+        if (Input.GetButtonDown("Jump"))
+        {
+            isJumping = true;
+        }
+    }
 
-        // déplace le personnage selon le vecteur de mouvement et la vitesse
-        transform.position += movement * speed * Time.deltaTime;
+    void MovePlayer(float _horizontalMovement)
+    {
+        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref targetVelocity, .05f);
+
+        if (isJumping == true)
+        {
+            rb.AddForce(new Vector2(0f, jumpForce));
+            isJumping = false;
+        }
     }
 }
