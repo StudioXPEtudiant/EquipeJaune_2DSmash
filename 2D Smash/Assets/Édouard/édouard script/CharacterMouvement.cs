@@ -9,7 +9,7 @@ public class CharacterMouvement : MonoBehaviour
     public bool isJumping = false;
 
     public Rigidbody2D rb;
-    private Vector3 velocity = Vector3.zero;
+    private Vector3 velocity = new Vector3().zero;
 
     void FixeUpdate()
     {
@@ -28,7 +28,7 @@ public class CharacterMouvement : MonoBehaviour
 
         if (isJumping == true)
         {
-            rb.AddForce(new Vector2(0f,jumpForce));
+            rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
         }
     }
