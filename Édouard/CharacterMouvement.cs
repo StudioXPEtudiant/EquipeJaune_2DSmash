@@ -1,48 +1,36 @@
+C#
+Copy code
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMouvement : MonoBehaviour
 {
-    public float moveSpeed;
-    public bool isJumping = false;
+    public float speed = 5f; // la vitesse du personnage
+    public float jumpForce = 7f; // la force du saut du personnage
+    public bool isGrounded; // variable qui stocke si le personnage touche le sol
 
-    private bool isJumping;
-    private bool isGrounded;
-
-    public Transform groundCheckLeft;
-    public Transform groundCheckRight;
-
-    public Rigidbody2D rb;
-    private Vector3 velocity = Vector3.zero;
-    private float horizontalMovement;
-
+    // fonction appelée à chaque image
     void Update()
     {
-        isGrounded = Physics2D.OverlapArea(GroundCheckLeft.position, groundCheckRight.position);
+        // récupère la valeur de l'axe horizontal (-1, 0 ou 1) et stocke le résultat dans une variable
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        // crée un vecteur de mouvement en utilisant la valeur d'entrée de l'axe horizontal et 0 pour l'axe y
+        Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // déplace le personnage selon le vecteur de mouvement et la vitesse
+        transform.position += movement * speed * Time.deltaTime;
+
+        // détecte si le personnage touche le sol
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.0f);
+
+        // si le joueur appuie sur la touche de saut et que le personnage touche le sol
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            isJumping = true;
-        }
-    }
-
-    void FixeUpdate()
-    {
-        MovePlayer(horizontalMovement);
-    }
-
-    void MovePlayer(float _horizontalMovement)
-    {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref targetVelocity, .05f);
-
-        if (isJumping == true)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
+            // ajoute une force de saut au personnage
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
+
