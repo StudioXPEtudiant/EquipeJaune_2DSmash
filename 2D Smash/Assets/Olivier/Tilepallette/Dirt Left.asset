@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: New Piskel (3)
+  m_Name: Dirt Left
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 06e02a71c01548a4faadd43272b2a27d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c96145519de1ec4dac1b0b16d389dff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
