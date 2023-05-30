@@ -271,9 +271,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 696931304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63eee4e820a24b542af3627c1713786b, type: 3}
+  m_Script: {fileID: 11500000, guid: e8611844c23e10b44a8b78c15b1382c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
+  jumpForce: 2
+  groundCheckLeft: {fileID: 0}
+  groundCheckRight: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!212 &696931307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4815,7 +4820,6 @@ CompositeCollider2D:
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
-  m_CompositeGameObject: {fileID: 892025839}
 --- !u!50 &892025842
 Rigidbody2D:
   serializedVersion: 4
