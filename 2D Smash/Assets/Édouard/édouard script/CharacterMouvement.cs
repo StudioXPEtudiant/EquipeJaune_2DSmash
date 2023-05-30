@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterMouvement : MonoBehaviour
 {
     public float moveSpeed;
-    public bool isJumping = false;
+    public float jumpForce;
 
     private bool isJumping;
     private bool isGrounded;
@@ -19,7 +19,7 @@ public class CharacterMouvement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapArea(GroundCheckLeft.position, groundCheckRight.position);
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
