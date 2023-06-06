@@ -7,7 +7,6 @@ public class CharacterMouvement : MonoBehaviour
     public float moveSpeed;
     public bool isJumping = false;
 
-    private bool isJumping;
     private bool isGrounded;
 
     public Transform groundCheckLeft;
