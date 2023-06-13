@@ -6,8 +6,8 @@ public class CharacterMouvement : MonoBehaviour
 {
     public float moveSpeed;
     public bool isJumping = false;
-
-    private bool isJumping;
+    public float jumpForce = 5;
+    
     private bool isGrounded;
 
     public Transform groundCheckLeft;
@@ -19,7 +19,7 @@ public class CharacterMouvement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapArea(GroundCheckLeft.position, groundCheckRight.position);
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
